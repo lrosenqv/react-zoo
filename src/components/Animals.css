@@ -1,0 +1,31 @@
+ul{
+  list-style-type: none;
+  width:100%;
+  display:flex;
+  flex-wrap: wrap;
+  /*display: grid;
+  grid-template-columns: repeat(3, 1fr);*/
+  padding:0;
+  gap:1rem;
+}
+
+.animalOverview{
+  height:48vh;
+  min-width:20%;
+  flex-grow:2;
+}
+
+img.imgOverview{
+  max-height: 80%;
+  min-width: 100%;
+  object-fit: cover;
+  object-position:top;
+}
+
+.animalName{
+  font-size: 1rem;
+}
+
+.shortDescription{
+  font-size: 0.8rem;
+}
