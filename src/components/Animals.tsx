@@ -1,8 +1,9 @@
 import React from 'react';
 import { IAnimal } from "../models/IAnimal";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Animals.css"
 import { useEffect, useState } from "react";
+import placeholderImg from "../img/placeholder.png"
 
 export function Animals(){
   const[animals, setAnimals] = useState<IAnimal[]>([]);
@@ -16,7 +17,11 @@ export function Animals(){
   let a = animals.map((animal, i) => {
     return(
       <li key={i} className='animalOverview'>
-          <img src={ animal.imageUrl } className='imgOverview'/>
+          <img src={ animal.imageUrl } className='imgOverview' onError={(err) => {
+            err.currentTarget.src = placeholderImg;
+            err.currentTarget.style.verticalAlign = "middle";
+          }
+          }/>
         <Link to={`/animal/${animal.id}`}><h3 className='animalName'>{ animal.name }</h3></Link>
       </li>
     )
