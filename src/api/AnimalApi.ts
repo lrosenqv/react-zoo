@@ -13,15 +13,3 @@ export function AnimalApi(){
     }
   });
 }
-
-
-/*let animalsList: string = localStorage.getItem('animalsInLS') || '[]';
-    if (animalsList === '[]') {
-
-      axios
-        .get<IAnimal[]>("https://animals.azurewebsites.net/api/animals")
-        .then(response => {
-          localStorage.setItem('animalsInLS', JSON.stringify(response.data));
-        });
-    }
-}, []);*/

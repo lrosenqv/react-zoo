@@ -1,25 +1,8 @@
-.animalDetails{
+.detailsAnimal{
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-template-rows: 3rem auto;
-  column-gap: 7rem;
 }
 
-section{
-  grid-column: 2;
-}
-h2{
-  grid-column: 1;
-  grid-row: 1;
-  margin:0;
-}
-
-p#longDescription{
-  grid-column: 1;
-  grid-row: 2;
-}
-
-div.animalDetails img.animalDetailsImg{
+div.detailsAnimal img.detailsImg{
   width: 20rem;
 }
 

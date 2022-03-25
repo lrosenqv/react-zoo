@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { AnimalApi } from './api/AnimalApi';
-import { Layout } from './components/Layout';
 
 function App() {
   AnimalApi();

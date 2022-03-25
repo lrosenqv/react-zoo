@@ -7,7 +7,7 @@ ul{
   gap:0.7rem;
 }
 
-li.animalOverview{
+li.overviewAnimal{
   height:35vh;
   min-width:10%;
   flex-grow:2;
@@ -15,18 +15,18 @@ li.animalOverview{
   overflow: hidden;
 }
 
-img.imgOverview{
+img.overviewImg{
   max-height: 100%;
   min-width: 100%;
   object-fit: cover;
   object-position:top;
 }
 
-div.animalInfo p.shortDescription{
+div.overviewInfo p.overviewDescription{
   font-size: 0.8rem;
 }
 
-h3.animalName{
+h3.overviewName{
   font-size: 0.9rem;
   top:1rem;
   left:0.7rem;
@@ -39,7 +39,7 @@ h3.animalName{
   z-index: 999;
 }
 
-div.animalInfo{
+div.overviewInfo{
   position: absolute;
   height:50%;
   width:10rem;
@@ -64,11 +64,11 @@ div.animalInfo{
   transition: all 0.2s;
 }
 
-div.animalInfo a{
+div.overviewInfo a{
   text-decoration: none;
 }
 
-li.animalOverview:hover div.animalInfo{
+li.overviewAnimal:hover div.overviewInfo{
   left:0;
   width:100%;
   height:100%;
@@ -85,7 +85,7 @@ li.animalOverview:hover div.animalInfo{
   );
 }
 
-p.shortDescription{
+p.overviewDescription{
   color:white;
   font-weight: 500;
   width:10rem;
@@ -94,6 +94,6 @@ p.shortDescription{
   transition: none;
 }
 
-li.animalOverview:hover p.shortDescription{
+li.overviewAnimal:hover p.overviewDescription{
   left:0.7rem;
 }

@@ -15,17 +15,17 @@ export function Animals(){
 
   let a = animals.map((animal, i) => {
     return(
-      <li key={i} className='animalOverview'>
+      <li key={i} className='overviewAnimal'>
         <Link to={`/animal/${animal.id}`}>
-          <img src={ animal.imageUrl } className='imgOverview' onError={
+          <img src={ animal.imageUrl } className='overviewImg' onError={
             (err) => {
               err.currentTarget.src = placeholderImg;
               err.currentTarget.style.verticalAlign = "middle";
             }
           }/>
-          <h3 className='animalName'>{ animal.name }</h3>
-          <div className='animalInfo'>
-            <p className='shortDescription'>{animal.shortDescription}</p>
+          <h3 className='overviewName'>{ animal.name }</h3>
+          <div className='overviewInfo'>
+            <p className='overviewDescription'>{animal.shortDescription}</p>
           </div>
         </Link>
       </li>

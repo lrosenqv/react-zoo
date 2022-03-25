@@ -39,6 +39,7 @@ export const Animal = () => {
     animals.find((animal: IAnimal) => {
       if(animal.id === fedAnimal.id){
         animal.lastFed = newFedTime.toJSON();
+        animal.isFed = true;
       }
       localStorage.setItem('animalsInLS', JSON.stringify(animals))
     });
@@ -47,25 +48,25 @@ export const Animal = () => {
   return(
     <>
     <Link to={'/animals'} className="button">Backa</Link>
-    <div className="animalDetails">
-      <h2>{ animal.name }</h2>
-      <p id="longDescription">{ animal.longDescription }</p>
-
-      <section>
-        <img src={ animal.imageUrl } className="animalDetailsImg"onError={
-            (err) => {
-              err.currentTarget.src = placeholderImg;
-            }
-          }/>
-        <ul id="animalFacts">
+    <div className="detailsAnimal">
+      <section id="detailsAboutAnimal">
+        <h2>{ animal.name }</h2>
+        <img src={ animal.imageUrl } className="detailsImg" onError={
+            (err) => { err.currentTarget.src = placeholderImg }}/>
+        <p id="detailsShortInfo">{ animal.shortDescription }</p>
+        <ul>
           <li>Födelseår: { animal.yearOfBirth }</li>
-          <li>Latinskt namn: { animal.latinName }</li>
           <li>Mediciner: { animal.medicine }</li>
           <li>Senast matad: { feedTime }</li>
           <li className={`hungerState ${isHungry ? 'hungry' : 'full'} `}>{isHungry ? 'Jag är hungrig :(' : 'Jag är mätt och belåten!' }</li>
         </ul>
         <button onClick={() => feedAnimal(animal)} disabled={ !isHungry }> Mata mig <FontAwesomeIcon icon={ faBacon } /></button>
       </section>
+
+      <aside id="detailsFacts">
+        <h3>{ animal.latinName }</h3>
+        <p id="detailsLongInfo">{ animal.longDescription }</p>
+      </aside>
     </div>
   </>
   )
