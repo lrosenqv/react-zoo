@@ -23,6 +23,10 @@ export function Animals(){
           }
           }/>
         <Link to={`/animal/${animal.id}`}><h3 className='animalName'>{ animal.name }</h3></Link>
+
+        <div className='animalInfo'>
+          <p className='shortDescription'>{animal.shortDescription}</p>
+        </div>
       </li>
     )
   });
