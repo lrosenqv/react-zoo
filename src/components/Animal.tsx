@@ -10,7 +10,6 @@ export const Animal = () =>{
   const{ id } = useParams();
   let animalId: number = Number(id);
   const[animal, setAnimal] = useState<IAnimal>(Object);
-  const[timeLastFed, setLastFed] = useState<Date>(new Date());
 
   let animals = JSON.parse(localStorage.getItem('animalsInLS') || '[]');
 
@@ -18,7 +17,6 @@ export const Animal = () =>{
     animals.find((animal: IAnimal) => {
       if(animal.id === animalId){
         setAnimal(animal);
-        setLastFed(new Date(animal.lastFed));
       };
     });
   }, []);

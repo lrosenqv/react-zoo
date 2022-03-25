@@ -1,5 +1,6 @@
 nav{
-  padding:3rem;
+  padding:2.5rem;
+  width:50%;
   display: flex;
   gap: 2rem;
   box-sizing: border-box;
@@ -19,6 +20,13 @@ nav a:hover{
   border-bottom: 1px solid black;
 }
 
+header{
+  width:100vw;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 footer{
   text-align: center;
   background-color: rgb(44, 49, 49);
@@ -31,4 +39,52 @@ main{
   width:100vw;
   box-sizing: border-box;
   padding: 2rem 8rem;
+}
+
+div#dropDown {
+  width:50%;
+  padding:1rem;
+  position: absolute;
+  right:-35rem;
+  font-size: 1.3rem;
+  font-weight: 300;
+  overflow: hidden;
+  z-index: 1;
+}
+
+div#dropDown:hover ul#hungryList{
+  height:100vh;
+  top:25rem;
+}
+
+div#dropDown ul#hungryList{
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.856);
+  padding:0.4rem 2rem;
+  top:3rem;
+  height:0rem;
+  width:5rem;
+  margin:0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  z-index: 999;
+  transition: all 0.5s;
+}
+
+ul#hungryList li a{
+  color:white;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+span#count{
+  font-size:1rem;
+  background-color: rgb(192, 32, 32);
+  padding:0.2rem 0.5rem;
+  border-radius: 50% 50%;
+  position:relative;
+  color:white;
+  top:-0.2rem;
 }

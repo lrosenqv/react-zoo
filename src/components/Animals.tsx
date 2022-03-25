@@ -8,6 +8,8 @@ import { RenderAnimals } from './RenderAnimals';
 
 export const Animals = () => {
   const[animals, setAnimals] = useState<IAnimal[]>([]);
+  const[hungryAnimals, setHungryAnimals] = useState<IAnimal[]>();
+
 
   useEffect(() => {
     let animalsString = JSON.parse(localStorage.getItem('animalsInLS') || '[]');
