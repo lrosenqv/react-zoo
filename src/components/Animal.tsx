@@ -1,73 +1,46 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBacon } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { IAnimal } from "../models/IAnimal";
 import "./Animal.css"
-import placeholderImg from "../img/placeholder.png"
+import { ShowAnimal } from "./ShowAnimal";
 
-export const Animal = () => {
+export const Animal = () =>{
   const{ id } = useParams();
   let animalId: number = Number(id);
   const[animal, setAnimal] = useState<IAnimal>(Object);
-  const [isHungry, setIsHungry] = useState<boolean>(false);
-  const[feedTime, setFeedTime] = useState<string>("");;
+  const[timeLastFed, setLastFed] = useState<Date>(new Date());
 
-  let animals = JSON.parse(localStorage.getItem('animalsInLS') || '[]')
+  let animals = JSON.parse(localStorage.getItem('animalsInLS') || '[]');
 
   useEffect(() => {
-    animals.find((anim: IAnimal) => {
-      if(anim.id === animalId){
-        let lastFedTime = new Date().getTime() - new Date(anim.lastFed).getTime();
-        let lastFedCount = Math.floor(lastFedTime / (1000 * 60 * 60));
-
-        if(lastFedCount >= 3) {
-          setIsHungry(true)
-          anim.isFed = false;
-        }
-        setAnimal(anim);
-        setFeedTime(new Date(anim.lastFed).toLocaleString());
+    animals.find((animal: IAnimal) => {
+      if(animal.id === animalId){
+        setAnimal(animal);
+        setLastFed(new Date(animal.lastFed));
       };
     });
   }, []);
 
-  function feedAnimal(fedAnimal: IAnimal){
-    let newFedTime = new Date();
-    setFeedTime(newFedTime.toLocaleString());
-    setIsHungry(false)
-
+  const setHunger = (fedAnimal: IAnimal) => {
     animals.find((animal: IAnimal) => {
       if(animal.id === fedAnimal.id){
-        animal.lastFed = newFedTime.toJSON();
+        animal.lastFed = new Date().toISOString();
         animal.isFed = true;
+        setAnimal(animal)
       }
       localStorage.setItem('animalsInLS', JSON.stringify(animals))
     });
   }
 
   return(
-    <>
-    <Link to={'/animals'} className="button">Backa</Link>
-    <div className="detailsAnimal">
-      <section id="detailsAboutAnimal">
-        <h2>{ animal.name }</h2>
-        <img src={ animal.imageUrl } className="detailsImg" onError={
-            (err) => { err.currentTarget.src = placeholderImg }}/>
-        <p id="detailsShortInfo">{ animal.shortDescription }</p>
-        <ul>
-          <li>Födelseår: { animal.yearOfBirth }</li>
-          <li>Mediciner: { animal.medicine }</li>
-          <li>Senast matad: { feedTime }</li>
-          <li className={`hungerState ${isHungry ? 'hungry' : 'full'} `}>{isHungry ? 'Jag är hungrig :(' : 'Jag är mätt och belåten!' }</li>
-        </ul>
-        <button onClick={() => feedAnimal(animal)} disabled={ !isHungry }> Mata mig <FontAwesomeIcon icon={ faBacon } /></button>
-      </section>
-
-      <aside id="detailsFacts">
-        <h3>{ animal.latinName }</h3>
-        <p id="detailsLongInfo">{ animal.longDescription }</p>
-      </aside>
+    <div className="detailsContainer">
+      <ShowAnimal animal={animal} />
+      <div className="detailsHungry">
+        <p className={`hungerState ${ animal.isFed ? 'full' : 'hungry' }`}>{ animal.isFed ? 'Jag är mätt och belåten!' : 'Jag är hungrig :(' }</p>
+        <button onClick={() => setHunger(animal)} disabled={ animal.isFed }> Mata mig <FontAwesomeIcon icon={ faBacon } /></button>
+      </div>
     </div>
-  </>
   )
 }

@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -15,16 +15,14 @@ ReactDOM.render(
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<App/>}/>
-          <Route path='/animals' element={<Animals/>}></Route>
-          <Route path='/animal/:id' element={<Animal/>}/>
+          <Route path='/animals' element={<Animals/>}/>
+          <Route path={'/animals/:id'} element={<Animal />} />
           <Route path='*' element={<NotFound/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
-
-
   </React.StrictMode>,
   document.getElementById('root')
 );
-
+//
 reportWebVitals();

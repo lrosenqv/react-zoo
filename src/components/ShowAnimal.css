@@ -1,0 +1,36 @@
+.detailsAnimal{
+  display: grid;
+}
+img.detailsImg{
+  width: 80%;
+}
+
+a.button{
+  color:rgb(22, 24, 27);
+  text-decoration: none;
+  position: absolute;
+  top:7rem;
+  right:8.5rem;
+}
+
+section#detailsAboutAnimal{
+  grid-column: 1;
+  grid-row: 1/span 3;
+}
+
+section#detailsAboutAnimal h2{
+  margin-top:0;
+}
+
+section#detailsAboutAnimal span{
+  font-weight: 500;
+}
+
+aside#detailsFacts{
+  grid-column: 2;
+  grid-row: 2/span 2;
+}
+
+aside#detailsFacts p#detailsLongInfo{
+  font-size: 0.85rem;
+}

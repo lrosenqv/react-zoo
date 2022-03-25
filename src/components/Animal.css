@@ -1,21 +1,43 @@
-.detailsAnimal{
-  display: grid;
+div.detailsContainer{
+  display:grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  gap:2rem;
 }
 
-div.detailsAnimal img.detailsImg{
-  width: 20rem;
+div.detailsContainer p{
+  line-height: 1.3rem;
 }
 
-a.button{
-  color:rgb(22, 24, 27);
-  text-decoration: none;
-  position: absolute;
-  top:7rem;
-  right:8.5rem;
-}
-
-button{
+div.detailsHungry button{
   cursor: pointer;
+  border:none;
+  padding:0.5rem 1rem;
+  font-size: 0.95rem;
+  color:white;
+  background-color: rgb(17, 17, 17);
+}
+div.detailsHungry button:disabled{
+  background-color: rgba(0, 0, 0, 0.308);
+  color:rgba(255, 255, 255, 0.37);
+  cursor:not-allowed;
+}
+
+div.detailsHungry{
+  margin-top:3rem;
+  background-color: rgb(226, 226, 226);
+  grid-row: 1;
+  grid-column: 2;
+  padding:1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:1rem;
+}
+
+div.detailsHungry p{
+  font-size: 1.1rem;
 }
 
 .hungerState.full{

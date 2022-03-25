@@ -2,10 +2,11 @@ import React from 'react';
 import { IAnimal } from "../models/IAnimal";
 import { Link } from "react-router-dom";
 import "./Animals.css"
+import "./RenderAnimals.css"
 import { useEffect, useState } from "react";
-import placeholderImg from "../img/placeholder.png"
+import { RenderAnimals } from './RenderAnimals';
 
-export function Animals(){
+export const Animals = () => {
   const[animals, setAnimals] = useState<IAnimal[]>([]);
 
   useEffect(() => {
@@ -13,30 +14,27 @@ export function Animals(){
     setAnimals(animalsString)
   }, []);
 
-  let a = animals.map((animal, i) => {
+  useEffect(() => {
+    animals.map((animal) => {
+      let lastFedCount = new Date().getHours() - new Date(animal.lastFed).getHours();
+      if(lastFedCount >= 3) {
+        animal.isFed = false;
+      }
+      localStorage.setItem('animalsInLS', JSON.stringify(animals));
+    });
+  });
+
+  let animalItem = animals.map((animal, i) => {
     return(
-      <li key={i} className='overviewAnimal'>
-        <Link to={`/animal/${animal.id}`}>
-          <img src={ animal.imageUrl } className='overviewImg' onError={
-            (err) => {
-              err.currentTarget.src = placeholderImg;
-              err.currentTarget.style.verticalAlign = "middle";
-            }
-          }/>
-          <h3 className='overviewName'>{ animal.name }</h3>
-          <div className='overviewInfo'>
-            <p className='overviewDescription'>{animal.shortDescription}</p>
-          </div>
+      <li key={i} className='overviewAnimal' >
+        <Link to={`/animals/${animal.id}`}>
+          <RenderAnimals animal={animal} />
         </Link>
       </li>
     )
   });
 
   return(
-    <>
-    <ul>
-      { a }
-    </ul>
-    </>
+      <ul>{ animalItem }</ul>
   )
 }
