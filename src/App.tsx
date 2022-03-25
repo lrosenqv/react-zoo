@@ -8,7 +8,7 @@ function App() {
 
   return(
     <div>
-      <h1>Välkommen till startsidan! :)</h1>
+      <h1>En jätteflashig startsida!</h1>
     </div>
   )
 }

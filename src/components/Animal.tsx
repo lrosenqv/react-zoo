@@ -1,7 +1,10 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBacon } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IAnimal } from "../models/IAnimal";
 import "./Animal.css"
+import placeholderImg from "../img/placeholder.png"
 
 export const Animal = () => {
   const{ id } = useParams();
@@ -46,17 +49,22 @@ export const Animal = () => {
     <Link to={'/animals'} className="button">Backa</Link>
     <div className="animalDetails">
       <h2>{ animal.name }</h2>
-      <p>{ animal.longDescription }</p>
+      <p id="longDescription">{ animal.longDescription }</p>
 
       <section>
-        <img src={ animal.imageUrl } className="animalDetailsImg"/>
-        <ul>
+        <img src={ animal.imageUrl } className="animalDetailsImg"onError={
+            (err) => {
+              err.currentTarget.src = placeholderImg;
+            }
+          }/>
+        <ul id="animalFacts">
+          <li>Födelseår: { animal.yearOfBirth }</li>
           <li>Latinskt namn: { animal.latinName }</li>
           <li>Mediciner: { animal.medicine }</li>
           <li>Senast matad: { feedTime }</li>
-          <li>{isHungry ? 'Jag är hungrig :(' : 'Jag är mätt och belåten!' }</li>
+          <li className={`hungerState ${isHungry ? 'hungry' : 'full'} `}>{isHungry ? 'Jag är hungrig :(' : 'Jag är mätt och belåten!' }</li>
         </ul>
-        <button onClick={() => feedAnimal(animal)}>Mata</button>
+        <button onClick={() => feedAnimal(animal)} disabled={ !isHungry }> Mata mig <FontAwesomeIcon icon={ faBacon } /></button>
       </section>
     </div>
   </>

@@ -11,22 +11,23 @@ export function Animals(){
   useEffect(() => {
     let animalsString = JSON.parse(localStorage.getItem('animalsInLS') || '[]');
     setAnimals(animalsString)
-    console.log(animalsString);
   }, []);
 
   let a = animals.map((animal, i) => {
     return(
       <li key={i} className='animalOverview'>
-          <img src={ animal.imageUrl } className='imgOverview' onError={(err) => {
-            err.currentTarget.src = placeholderImg;
-            err.currentTarget.style.verticalAlign = "middle";
-          }
+        <Link to={`/animal/${animal.id}`}>
+          <img src={ animal.imageUrl } className='imgOverview' onError={
+            (err) => {
+              err.currentTarget.src = placeholderImg;
+              err.currentTarget.style.verticalAlign = "middle";
+            }
           }/>
-        <Link to={`/animal/${animal.id}`}><h3 className='animalName'>{ animal.name }</h3></Link>
-
-        <div className='animalInfo'>
-          <p className='shortDescription'>{animal.shortDescription}</p>
-        </div>
+          <h3 className='animalName'>{ animal.name }</h3>
+          <div className='animalInfo'>
+            <p className='shortDescription'>{animal.shortDescription}</p>
+          </div>
+        </Link>
       </li>
     )
   });
@@ -39,5 +40,3 @@ export function Animals(){
     </>
   )
 }
-
-//<p className='shortDescription'>{ animal.shortDescription }</p>

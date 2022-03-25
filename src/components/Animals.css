@@ -3,15 +3,13 @@ ul{
   width:100%;
   display:flex;
   flex-wrap: wrap;
-  /*display: grid;
-  grid-template-columns: repeat(3, 1fr);*/
   padding:0;
-  gap:1rem;
+  gap:0.7rem;
 }
 
 li.animalOverview{
   height:35vh;
-  min-width:20%;
+  min-width:10%;
   flex-grow:2;
   position: relative;
   overflow: hidden;

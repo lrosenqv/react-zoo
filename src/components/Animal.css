@@ -1,18 +1,44 @@
 .animalDetails{
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: 3rem auto;
   column-gap: 7rem;
 }
 
 section{
   grid-column: 2;
 }
-
-p{
+h2{
   grid-column: 1;
+  grid-row: 1;
+  margin:0;
+}
+
+p#longDescription{
+  grid-column: 1;
+  grid-row: 2;
 }
 
 div.animalDetails img.animalDetailsImg{
-  width: 25rem;
+  width: 20rem;
+}
+
+a.button{
+  color:rgb(22, 24, 27);
+  text-decoration: none;
+  position: absolute;
+  top:7rem;
+  right:8.5rem;
+}
+
+button{
+  cursor: pointer;
+}
+
+.hungerState.full{
+  color:rgb(86, 136, 86);
+}
+
+.hungerState.hungry{
+  color:rgb(173, 62, 62);
 }
